@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# by Robert Campbell <rsc@indra.com>
+
+set -e
+
+NARG=$#
+if [ $NARG -ne 1 ]; then
+	echo 1>&2 "usage: huginpost.sh image.tif"
+	exit 1
+fi
+
+# We're only expecting one argument, so natch
+file=$1
+
+# Now chop off the .tif
+fileroot=`echo $file | awk -F'.tif' '{print $1}'`
+
+# Let ourselves know what's happening
+echo "Converting $file to ${fileroot}.jpg"
+
+# Call the ImageMagick utility 'convert' to do all our transformations
+convert $file -background white -flatten -trim -quality 90 ${fileroot}.jpg
