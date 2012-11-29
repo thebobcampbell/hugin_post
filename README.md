@@ -2,4 +2,4 @@ This script was written to convert output from Hugin, the free panorama tool tha
 
 Early in Hugin's development, it did not crop the output.  So, unless you were creating a full 360x180 panorama, you would get all the pixels visible in the preview viewing area.  This often lead to a large, blank, alpha-channel area around your stitched composite image.  Being an ImageMagick aficionado, I sought to a) keep all the pixels, b) trim down to the smallest circumscribed rectangle, and c) set the color of the alpha-channel (background layer) - often to white.
 
-Thus, this script.  I have decided to put it up on github in case anyone else might find it useful or wish to contribute.  I plan to add various options, such as specifying the background color (white is assumed) and possibly a toggle for circumscribed or inscribed cropping.
+Thus, this script.  I have decided to put it up on github in case anyone else might find it useful or wish to contribute.  I plan to add various options, such as specifying the background color (white is assumed) and possibly a toggle for smallest circumscribed or largest inscribed cropping.
