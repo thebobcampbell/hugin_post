@@ -20,9 +20,6 @@ do
 done
 
 
-# We're only expecting one argument, so natch
-#file=$1
-
 # Now chop off the .tif
 fileroot=`echo $file | awk -F'.tif' '{print $1}'`
 
@@ -30,6 +27,4 @@ fileroot=`echo $file | awk -F'.tif' '{print $1}'`
 echo "Converting $file to ${fileroot}.jpg"
 
 # Call the ImageMagick utility 'convert' to do all our transformations
-#convert $file -background white -layers merge -trim -quality 90 ${fileroot}.jpg
-#convert $file -background black -layers merge -trim -quality 90 ${fileroot}.jpg
 convert $file -background $bgcolor -layers merge -trim -quality 90 ${fileroot}.jpg
