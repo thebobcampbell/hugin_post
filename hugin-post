@@ -24,7 +24,7 @@ done
 fileroot=`echo $file | awk -F'.tif' '{print $1}'`
 
 # Let ourselves know what's happening
-echo "Converting $file to ${fileroot}.jpg"
+echo "Converting $file to ${fileroot}.jpg with a $bgcolor background."
 
 # Call the ImageMagick utility 'convert' to do all our transformations
 convert $file -background $bgcolor -layers merge -trim -quality 90 ${fileroot}.jpg
