@@ -4,17 +4,21 @@
 
 set -e
 
+# set defaults
 bgcolor="white"
+quality=90
+
 NARG=$#
 if [ $NARG -eq 0 ]; then
-	echo 1>&2 "usage: hugin-post [-b color] image.tif"
+	echo 1>&2 "usage: hugin-post [-b color] [-j # (JPEG quality, 1-100)] image.tif"
 	exit 1
 fi
 while [ $NARG -gt 0 ]
 do
 	case "$1" in
 		-b) bgcolor="$2"; shift;;
-		*) file="$1"; break;;
+		-j) quality="$2"; shift;;
+		*) file="$1"; break;;		
 	esac
 	shift
 done
@@ -24,7 +28,7 @@ done
 fileroot=`echo $file | awk -F'.tif' '{print $1}'`
 
 # Let ourselves know what's happening
-echo "Converting $file to ${fileroot}.jpg with a $bgcolor background."
+echo "Converting $file to ${fileroot}.jpg with a $bgcolor background at ${quality}/100 jpeg quality."
 
 # Call the ImageMagick utility 'convert' to do all our transformations
-convert $file -background $bgcolor -layers merge -trim -quality 90 ${fileroot}.jpg
+convert $file -background $bgcolor -layers merge -trim -quality $quality ${fileroot}.jpg
